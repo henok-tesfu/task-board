@@ -39,7 +39,11 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        $data = request(['title','description']);
+        $data = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+
         Project::create($data);
     }
 

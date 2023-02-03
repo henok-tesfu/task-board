@@ -45,6 +45,9 @@ class ProjectsController extends Controller
         ]);
 
         Project::create($data);
+
+
+       // return list of projects Ui
     }
 
     /**
@@ -53,9 +56,9 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Project $project)
     {
-        //
+        return $project;
     }
 
     /**

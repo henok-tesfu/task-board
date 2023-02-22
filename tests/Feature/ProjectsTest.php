@@ -6,11 +6,21 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Project;
+use App\Models\User;
+use Laravel\Sanctum\Sanctum;
 
 class ProjectsTest extends TestCase
 {
     use WithFaker,RefreshDatabase;
    
+    public function setUp(): void
+    {
+        parent::setUp();
+        Sanctum::actingAs(
+            User::factory()->create(),
+            ['*']
+        );
+    }
 
    /** @test */
     public function a_user_can_create_a_project()
@@ -56,7 +66,7 @@ class ProjectsTest extends TestCase
       {
         $this->withoutExceptionHandling();
             $project =   Project::factory()->create();
-             $this->get('/projects/'.$project->id)->assertSee('title')->assertSee('description');
+             $this->get($project->path())->assertSee('title')->assertSee('description');
 
             
           

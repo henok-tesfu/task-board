@@ -24,17 +24,17 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
-
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
+        // middleware([
+        //     'auth:sanctum',
+        //     config('jetstream.auth_session'),
+        //     'verified',
+        // ])->
+Route::group([],function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+    Route::post('/projects',[ProjectsController::class,'store']);
+    Route::get('/projects',[ProjectsController::class,'index'])->name('projects');
+    Route::get('/projects/{project}',[ProjectsController::class,'show']);
 });
 
-Route::post('/projects',[ProjectsController::class,'store']);
-Route::get('/projects',[ProjectsController::class,'index']);
-Route::get('/projects/{project}',[ProjectsController::class,'show']);

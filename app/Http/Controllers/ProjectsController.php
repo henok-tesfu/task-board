@@ -47,7 +47,7 @@ class ProjectsController extends Controller
         Project::create($data);
 
 
-       // return list of projects Ui
+        return $this->index();
     }
 
     /**
@@ -58,7 +58,7 @@ class ProjectsController extends Controller
      */
     public function show(Project $project)
     {
-        return $project;
+        return Inertia::render('/Projects/show',['project'=>$project]);
     }
 
     /**

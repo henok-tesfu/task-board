@@ -41,10 +41,12 @@ class ProjectsController extends Controller
     {
         $data = $request->validate([
             'title' => 'required',
-            'description' => 'required',
+            'description' => 'required'
         ]);
 
-        Project::create($data);
+      $user = $request->user();
+
+      $user->project()->create($data);
 
 
         return $this->index();

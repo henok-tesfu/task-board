@@ -72,5 +72,17 @@ class ProjectsTest extends TestCase
           
       }
 
+       /** @test */
+    
+       public function only_authenticated_user_can_create_projects()
+       {
+         $this->withoutExceptionHandling();
+             $project =   Project::factory()->raw();
+              $this->post('/projects',$project)->assertRedirect('login');
+ 
+             
+           
+       }
+
 
 }

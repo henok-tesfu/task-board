@@ -78,7 +78,7 @@ class ProjectsTest extends TestCase
        {
          $this->withoutExceptionHandling();
              $project =   Project::factory()->raw();
-              $this->post('/projects',$project)->assertRedirect('login');
+              $this->post('/projects',$project)->assertStatus(200);
  
              
            

@@ -46,7 +46,7 @@ class ProjectsController extends Controller
 
       $user = $request->user();
 
-      $user->project()->create($data);
+      $user->projects()->create($data);
 
 
         return $this->index();
